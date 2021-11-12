@@ -3,20 +3,26 @@
  * @Author: lukasavage
  * @Date: 2021-11-10 21:48:58
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-10 23:02:48
+ * @LastEditTime: 2021-11-12 22:50:08
  */
 import { REACT_ELEMENT } from './constants'
 import { wrapToVDOM } from './utils'
 
-
+/**
+ * react基本的createElement方法
+ * @param {string} type 代表创建dom的标签类型，例如：'h1', 'span'
+ * @param {object} config 代表配置对象，通常是组件/标签的属性
+ * @param {string | number | object} children 组件或者标签的儿子们
+ * @returns 返回虚拟对象，内部通常有$$typeof、typeof、props、key、ref、
+ */
 function createElement(type, config, children) {
-    let key, ref;         // 由于key、ref会传入到config里面，而源码则需要放在外面，故做特俗处理
+    let key = null, ref = null;         // 由于key、ref会传入到config里面，而源码则需要放在外面，故做特俗处理
     if (config) {
-        key = config.key;
+        key = config.key; 
         ref = config.ref;
         // 删除config里面的key、ref
-        delete key;        // 用来做DOM-DIFF的
-        delete ref;        // 用于获取真实DOM的
+        delete config.ref;        // 用来做DOM-DIFF的
+        delete config.key;        // 用于获取真实DOM的
     }
     const props = { ...config };
     if (arguments.length > 3) {                                                      // 说明有2个以及以上的儿子
@@ -51,10 +57,18 @@ function createElement(type, config, children) {
     [[Prototype]]: Object
 }
 
+    // 具体步骤梳理：
+    1.createElement接受三个参数type、config、children，return制为一个虚拟dom，包含$$typeof、type、ref、key、props
+    2.针对于arguments参数做处理
+        ·如果大于3...
+        ·如果等于3...
+    3.为了方便后续做dom-diff，对现有的children做了一层包装，包装成{$$type: xxx, type: xxx, props: {content: xxx}}的形式
+    4.去除config中的ref、key，把它们移到顶级对象的里面
 
  */
 
-
-export {
+const react = {
     createElement
 }
+
+export default react;
