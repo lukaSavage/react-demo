@@ -3,7 +3,7 @@
  * @Author: lukasavage
  * @Date: 2021-11-21 10:33:31
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-21 11:56:23
+ * @LastEditTime: 2021-11-21 15:41:53
  */
 import React, { Component } from 'react'
 
@@ -17,10 +17,11 @@ export default class Router extends Component {
         }
 
         // 最后一步：调用history.listen方法，实现UI视图更新
-        props.history.listen((location)=>{
+        this.unListen = props.history.listen((location)=>{
             console.log(location);
             this.setState({location});
         })
+        console.log(this.unListen);
     }
 
     render() {
