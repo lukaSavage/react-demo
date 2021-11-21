@@ -3,7 +3,7 @@
  * @Author: lukasavage
  * @Date: 2021-11-10 21:10:26
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-21 17:03:01
+ * @LastEditTime: 2021-11-21 21:15:54
  */
 import React from 'react'
 import reactDOM from 'react-dom'
@@ -20,9 +20,9 @@ import Index from './pages/Index';
 reactDOM.render((
     <Router>
         <div>
-            <Route path="/" component={Index}></Route>
-            <Route path="/home" component={Home}></Route>
-            <Route path="/abort" component={Abort}></Route>
+            <Route path="/" exact component={Index}></Route>
+            <Route path="/home" exact component={Home}></Route>
+            <Route path="/abort" exact component={Abort}></Route>
         </div>
     </Router>
 ), document.getElementById('root'));
