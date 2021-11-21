@@ -3,10 +3,11 @@
  * @Author: lukasavage
  * @Date: 2021-11-10 21:48:58
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-12 22:50:08
+ * @LastEditTime: 2021-11-13 00:53:46
  */
 import { REACT_ELEMENT } from './constants'
 import { wrapToVDOM } from './utils'
+import Component from './component'
 
 /**
  * react基本的createElement方法
@@ -68,7 +69,8 @@ function createElement(type, config, children) {
  */
 
 const react = {
-    createElement
+    createElement,
+    component
 }
 
 export default react;

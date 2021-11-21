@@ -3,10 +3,10 @@
  * @Author: lukasavage
  * @Date: 2021-11-12 20:37:26
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-12 23:59:17
+ * @LastEditTime: 2021-11-21 09:46:58
  */
 
-import { REACT_ELEMENT, REACT_TEXT } from './constants'
+import { REACT_ELEMENT, REACT_TEXT } from '../constants'
 
 /**
  * 将虚拟DOM变成真实DOM
