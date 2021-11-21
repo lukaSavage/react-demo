@@ -3,26 +3,23 @@
  * @Author: lukasavage
  * @Date: 2021-11-10 21:10:26
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-21 09:46:36
+ * @LastEditTime: 2021-11-21 11:55:50
  */
-// import React from 'react'
-import reactDOM from 'react-dom'
 import React from 'react'
+import reactDOM from 'react-dom'
+import { HashRouter as Router } from './react-router-dom'
+import { Route } from './react-router'
+import Home from './pages/Home';
+import Abort from './pages/Abort';
 
 
-const FuncCom = (props) => {
-    return <div className='hello' style={{ color: '#f90' }}>
-        {props.name}
-    </div>
-}
-// const Ele = <div style={{ color: '#f00' }} className='my-ele'>hello<Com /><span>ccc</span></div>;
 
 
-const Ele2 = React.createElement(<FuncCom name='lks' /> , { style: { color: '#f00' }, className: 'aaa' }, 'hello');
 
-console.dir(Ele2);
-// console.dir(Ele2);
-
-
-reactDOM.render(Ele2, document.getElementById('root'));
+reactDOM.render((
+    <Router>
+        <Route path="/home" component={Home}></Route>
+        <Route path="/abort" component={Abort}></Route>
+    </Router>
+), document.getElementById('root'));
 
