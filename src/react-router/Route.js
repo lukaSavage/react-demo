@@ -3,27 +3,38 @@
  * @Author: lukasavage
  * @Date: 2021-11-21 10:33:36
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-21 21:44:25
+ * @LastEditTime: 2021-11-22 20:59:41
  */
 import React, { Component } from 'react'
 import RouterContext from './routerContext'
 import matchPath from './matchPath'
 
 
-export default class Route extends Component {
-    static contextType = RouterContext;
+class Route extends React.Component {
+    static contextType = RouterContext
     render() {
         const { history, location } = this.context;
-        const { component: RootComponent } = this.props;
-        // const match = location.pathname === path
-        const match = matchPath(location.pathname, this.props);
-        // 需要传递给子组件的三大属性
-        const rootProps = { history, location };
+        const { component: RouteComponent, computedMatch, render } = this.props;
+        const match = computedMatch ? computedMatch : matchPath(location.pathname, this.props);
+        let routeProps = { history, location };
         let element = null;
-        if(match) {
-            rootProps.match = match;
-            element = <RootComponent {...rootProps}/>
+        if (match) {
+            routeProps.match = match;
+            if (RouteComponent) {
+                element = <RouteComponent {...routeProps} />
+            } else if (render) {
+                element = render(routeProps);
+            } else {
+                element = null;
+            }
+        } else {
+            element = null;
         }
-        return element;
+        return (
+            <RouterContext.Provider value={routeProps}>
+                {element}
+            </RouterContext.Provider>
+        )
     }
 }
+export default Route;
