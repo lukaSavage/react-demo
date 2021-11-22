@@ -3,7 +3,7 @@
  * @Author: lukasavage
  * @Date: 2021-11-21 15:31:06
  * @LastEditors: lukasavage
- * @LastEditTime: 2021-11-21 17:40:21
+ * @LastEditTime: 2021-11-21 21:43:35
  */
 function createBrowserHistory() {
     let action = 'POP';        // action表示是由于什么样的动作引起了路径的变更
@@ -13,7 +13,7 @@ function createBrowserHistory() {
     function listen(listener) {
         listeners.push(listener);
         return () => {
-            listeners = listeners.filter(item => item != listener);
+            listeners = listeners.filter(item => item !== listener);
         }
     }
 
